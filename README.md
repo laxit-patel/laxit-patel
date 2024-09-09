@@ -1,9 +1,7 @@
 <h1 align="center">Hi 👋, I'm Lankit Patel</h1>
 <h3 align="center">Meticulous Sr. Software Engineer</h3>
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=laxit-patel-simform&label=Profile%20views&color=0e75b6&style=flat" alt="laxit-patel-simform" /> </p>
-
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=laxit-patel-simform" alt="laxit-patel-simform" /></a> </p>
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=laxit-patel&label=Profile%20views&color=0e75b6&style=flat" alt="laxit-patel-simform" /> </p>
 
 - 🌱 I’m currently learning **K8s, Laravel, Node.js, Typescript**
 
