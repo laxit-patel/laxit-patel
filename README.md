@@ -9,7 +9,9 @@
 
 - 💬 Ask me about **laravel, micro-service, docker**
 
-- 📫 How to reach me **lankit.patel@simformsolutions.com**
+- 📫 How to reach me **laxxitpatel@gmail.com**
+
+- or Whatsapp on ** +91 9726412461 **
 
 - ⚡ Fun fact **i know things**
 
