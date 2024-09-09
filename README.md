@@ -11,7 +11,7 @@
 
 - 📫 How to reach me **laxxitpatel@gmail.com**
 
-- or Whatsapp on ** +91 9726412461 **
+- or Whatsapp on ** +919726412461**
 
 - ⚡ Fun fact **i know things**
 
