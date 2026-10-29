@@ -1,0 +1,20 @@
+# Fills the "Latest posts" list in README.md from the Medium feed, once a day (or on demand from the Actions tab).
+name: Latest blog posts
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gautamkrishnar/blog-post-workflow@v1
+        with:
+          feed_list: "https://medium.com/feed/@laxitpatel"
+          max_post_count: 5
