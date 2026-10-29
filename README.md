@@ -17,6 +17,7 @@ I build production web platforms end to end, from the database schema to the dep
 
 ### ✍️ Latest posts
 <!-- BLOG-POST-LIST:START -->
+- [Supercharge your Role And Permission management with Custom Laravel Helper Commands &amp; Spatie](https://laxitpatel.medium.com/supercharge-your-role-permission-management-with-custom-laravel-helper-commands-spatie-ef9d2bf357ce?source=rss-a3bc257a964e------2)
 <!-- BLOG-POST-LIST:END -->
 
 ### 🛠️ Tools I work with
