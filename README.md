@@ -1,12 +1,14 @@
 <h1 align="center">Hi 👋, I'm Laxit</h1>
-<h3 align="center">Senior Software Engineer · I ship AI into production systems · Go, Kotlin and cloud reliability</h3>
+<h3 align="center">Senior Software Engineer · I ship AI into production systems · Laravel, Go, Kotlin · cloud reliability</h3>
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=laxit-patel&label=Profile%20views&color=0e75b6&style=flat" alt="Profile views" />
 </p>
 
-I build production platforms end to end, from the database schema to the deploy pipeline, and most of my recent work puts
-**AI inside real business systems**: agents that answer from live data, with guardrails, evals and observability around them.
+I build production platforms end to end, from the database schema to the deploy pipeline. For most of my career that has
+meant **Laravel**: storefronts, ERP and SAP integrations, warehouse and marketplace platforms, SaaS products and APIs. More
+recently it means putting **AI inside those systems**: agents that answer from live data, with guardrails, evals and
+observability around them.
 Outside work I build tools, libraries and odd experiments in Go, Kotlin, PHP, Python and Flutter.
 
 - 🤖 **Now:** AI agents in **Laravel** with LLM tool calling, **MCP** servers, guardrails and golden-set evals
