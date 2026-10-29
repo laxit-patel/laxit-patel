@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Laxit</h1>
-<h3 align="center">Senior Software Engineer · Laravel, AI agents and cloud infrastructure</h3>
+<h3 align="center">Senior Software Engineer · I ship AI into production systems · Go, Kotlin and cloud reliability</h3>
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=laxit-patel&label=Profile%20views&color=0e75b6&style=flat" alt="Profile views" />
