@@ -28,6 +28,13 @@ Aiming for **Forward Deployed Engineer** or **Site Reliability Engineer** roles,
 - **Kotlin and Go:** a native Android camera app, a Kotlin ad-placement engine and order-management service, a Go report
   engine on AWS, a Go video-call backend with a double-entry ledger, and Go CLIs and tools
 
+## 📜 Certifications
+
+| Certification | Issuer | Valid | Verify |
+| --- | --- | --- | --- |
+| **AWS Certified Developer – Associate** | Amazon Web Services | Jun 2025 – Jun 2028 (first earned Jan 2022) | [current credential](https://cp.certmetrics.com/amazon/en/public/verify/credential/7ea5b9dca9624f87bca79dd799a6c03d) · [2022 badge](https://www.credly.com/badges/1f6e79b9-d805-42a4-8eb0-5ebb3b09eade) |
+| **Building with the Claude API** | Anthropic | issued Jul 2026 | [credential](https://verify.skilljar.com/c/sttesat9m6vw) |
+
 ## 🧪 Open source
 
 | Project | What it is |

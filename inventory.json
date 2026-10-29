@@ -7,6 +7,14 @@
     "roles": ["Forward Deployed Engineer (FDE)", "Site Reliability Engineer (SRE)"],
     "technologies": ["Kotlin", "Go"]
   },
+  "certifications": [
+    {"name": "AWS Certified Developer – Associate", "issuer": "Amazon Web Services", "issued": "2025-06-07", "expires": "2028-06-07", "status": "active",
+     "verify": "https://cp.certmetrics.com/amazon/en/public/verify/credential/7ea5b9dca9624f87bca79dd799a6c03d"},
+    {"name": "AWS Certified Developer – Associate", "issuer": "Amazon Web Services", "issued": "2022-01", "expires": "2025-01", "status": "expired (recertified 2025)",
+     "verify": "https://www.credly.com/badges/1f6e79b9-d805-42a4-8eb0-5ebb3b09eade"},
+    {"name": "Building with the Claude API", "issuer": "Anthropic", "issued": "2026-07", "status": "active",
+     "verify": "https://verify.skilljar.com/c/sttesat9m6vw"}
+  ],
   "fields": {
     "ownership": "personal | client | employer | learning",
     "role": "author (I wrote most of it) | lead (I led it, others contributed) | contributor (a part of a team codebase)",
