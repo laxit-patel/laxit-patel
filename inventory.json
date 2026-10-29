@@ -1,0 +1,484 @@
+{
+  "$schema_version": "1.0",
+  "owner": "laxit-patel",
+  "updated": "2026-10-29",
+  "about": "Every project I have worked on, wherever its code lives: public GitHub, private repos, employer GitLab or local folders. Client and employer work is described by what was engineered, never by client or company name. EXPOSURE.md is generated from this file by tools/exposure.py.",
+  "aims": {
+    "roles": ["Forward Deployed Engineer (FDE)", "Site Reliability Engineer (SRE)"],
+    "technologies": ["Kotlin", "Go"]
+  },
+  "fields": {
+    "ownership": "personal | client | employer | learning",
+    "role": "author (I wrote most of it) | lead (I led it, others contributed) | contributor (a part of a team codebase)",
+    "status": "live | working | prototype | skeleton | archived",
+    "visibility": "public (code linkable) | private (code not public) | anonymised (client or employer work, names withheld)"
+  },
+  "projects": [
+    {
+      "id": "ai-storefront-agent",
+      "name": "AI storefront customer-service agent",
+      "ownership": "client", "role": "author", "status": "working", "visibility": "anonymised", "last_activity": "2026-10",
+      "summary": "A sidecar AI service for an e-commerce storefront: a chat agent answering from the warehouse database through typed tools, with the same tools exposed over MCP.",
+      "languages": ["PHP", "JavaScript"],
+      "frameworks": ["Laravel 13", "laravel/ai", "laravel/mcp", "Pest"],
+      "data": ["PostgreSQL", "pgvector", "MySQL"],
+      "infra": ["Docker", "Kamal", "OpenTofu", "AWS", "GitLab CI"],
+      "ai": ["Claude (Anthropic API)", "LLM tool calling", "MCP", "guardrail classifier", "embeddings", "golden-set evals", "LLM-as-judge grading", "Langfuse"],
+      "techniques": ["one agent core behind thin adapters", "typed settings for every environment feeding secret stores and deploys", "production rehearsal against a local AWS emulator", "PHPStan level 9", "mutation testing"]
+    },
+    {
+      "id": "voice-ai-delivery-recovery",
+      "name": "Voice AI agent for failed-delivery recovery",
+      "ownership": "client", "role": "lead", "status": "prototype", "visibility": "anonymised", "last_activity": "2026-07",
+      "summary": "An AI agent that phones online-store customers about failed deliveries (return-to-origin) in Hindi and Hinglish, with a merchant admin app for Shopify.",
+      "languages": ["Kotlin", "Go", "Python", "TypeScript"],
+      "frameworks": ["Spring Boot", "Temporal", "LiveKit Agents", "React Router", "Prisma", "Shopify embedded apps"],
+      "data": ["PostgreSQL"],
+      "infra": ["Docker", "Caddy", "Railway", "AWS"],
+      "ai": ["voice agents", "speech-to-text", "text-to-speech", "voice activity detection", "OpenRouter", "Indic speech models"],
+      "techniques": ["durable workflows", "calling-hours and do-not-disturb compliance gates", "barge-in voice loop", "phone-line (PSTN) calling"]
+    },
+    {
+      "id": "marketplace-report-engine",
+      "name": "Marketplace report ingestion engine",
+      "ownership": "employer", "role": "author", "status": "working", "visibility": "anonymised", "last_activity": "2026-09",
+      "summary": "A bring-your-own-cloud engine that requests, polls, downloads, transforms and loads marketplace seller reports, deployed single-tenant per client.",
+      "languages": ["Go"],
+      "frameworks": [],
+      "data": ["DynamoDB", "S3", "Parquet"],
+      "infra": ["AWS Lambda", "AWS Step Functions", "ECR", "Terraform", "OpenTofu"],
+      "ai": [],
+      "techniques": ["report types as YAML mappings", "fake vendor API for tests", "fixtures for every documented report variant", "one apply per client"]
+    },
+    {
+      "id": "api-retirement-scanner",
+      "name": "API retirement and end-of-life scanner",
+      "ownership": "employer", "role": "author", "status": "working", "visibility": "anonymised", "last_activity": "2026-09",
+      "summary": "Finds code that calls vendor APIs scheduled for retirement, end-of-life runtimes and known CVEs, down to file and line with a sourced date; runs on a schedule across a 50+ repository fleet and ships as a Claude Code plugin.",
+      "languages": ["Python", "Rust"],
+      "frameworks": ["Claude Code plugins"],
+      "data": ["YAML knowledge catalog"],
+      "infra": ["GitLab CI", "GitHub Actions", "Docker"],
+      "ai": ["AI-proposed leads validated by a deterministic gate", "Claude Code"],
+      "techniques": ["byte-reproducible offline scan using no LLM tokens", "versioned, checksummed vendor-sunset catalog", "fleet-wide scheduled scans with ticket filing", "validated against 30+ public vendor SDK repos", "Rust workspace rewrite"]
+    },
+    {
+      "id": "seller-analytics-pipelines",
+      "name": "Seller analytics report pipelines",
+      "ownership": "client", "role": "contributor", "status": "working", "visibility": "anonymised", "last_activity": "2026-10",
+      "summary": "Contributions to an AI-enabled marketplace seller analytics platform, centred on its multi-GB report ingestion.",
+      "languages": ["TypeScript", "Python"],
+      "frameworks": ["NestJS", "Next.js", "Turborepo", "Serverless Framework"],
+      "data": ["TimescaleDB", "Redis", "DuckDB", "Athena", "Parquet"],
+      "infra": ["AWS Lambda", "AWS Fargate", "SQS", "OpenTofu"],
+      "ai": ["MCP tool server", "Langfuse"],
+      "techniques": ["about 20x memory cut by reshaping to NDJSON before DuckDB", "constant-memory streaming of 7 GB+ JSON into partitioned Parquet (ijson, pyarrow)", "Lambda handing oversized jobs to Fargate", "load benchmarks and a written post-mortem"]
+    },
+    {
+      "id": "legacy-php-to-fargate",
+      "name": "Legacy multichannel commerce platform modernisation",
+      "ownership": "client", "role": "author", "status": "prototype", "visibility": "anonymised", "last_activity": "2026-08",
+      "summary": "Assessment and plan to move a serverless legacy PHP marketplace-integration platform onto containers, with a working containerised fork.",
+      "languages": ["PHP"],
+      "frameworks": ["Laravel 7/8", "Bref"],
+      "data": ["MySQL"],
+      "infra": ["Docker", "AWS ECS Fargate", "AWS Lambda", "Make"],
+      "ai": [],
+      "techniques": ["byte-identical seeded fork with deliberate changes only", "graceful SIGTERM via pcntl", "PHP 8.3 syntax sweep over 961 files", "mapping a database shared by two applications"]
+    },
+    {
+      "id": "legacy-wms-audit",
+      "name": "Warehouse management system audit and MCP security fix",
+      "ownership": "client", "role": "contributor", "status": "working", "visibility": "anonymised", "last_activity": "2026-09",
+      "summary": "Containerised and audited a large legacy Laravel warehouse system; found a cross-tenant hole in its MCP server (one shared static token, no ownership checks) and designed per-user signed tokens.",
+      "languages": ["PHP"],
+      "frameworks": ["Laravel 8"],
+      "data": ["MySQL"],
+      "infra": ["Docker"],
+      "ai": ["MCP"],
+      "techniques": ["security audit", "legacy containerisation"]
+    },
+    {
+      "id": "video-call-platform",
+      "name": "Paid 1:1 creator video-call platform",
+      "ownership": "client", "role": "author", "status": "prototype", "visibility": "anonymised", "last_activity": "2026-10",
+      "summary": "Backend, Android app and website for paid per-minute video calls with creators: wallet, payments, payouts, referrals, KYC and admin.",
+      "languages": ["Go", "Kotlin", "TypeScript"],
+      "frameworks": ["templ", "htmx", "Jetpack Compose", "LiveKit", "Astro"],
+      "data": ["PostgreSQL", "TigerBeetle", "Redis"],
+      "infra": ["Docker", "Caddy", "self-hosted LiveKit"],
+      "ai": [],
+      "techniques": ["double-entry ledger for balances", "prepaid per-minute metering with the server as sole authority on time and money", "self-hosted APK distribution with SHA-256 release manifests"]
+    },
+    {
+      "id": "gps-map-camera",
+      "name": "GPS map camera app",
+      "ownership": "client", "role": "lead", "status": "live", "visibility": "anonymised", "last_activity": "2026-10",
+      "summary": "A camera app on Google Play that stamps GPS coordinates, address and a map onto photos and videos; taken over as an inherited Flutter app, re-architected to MVVM, then rebuilt natively.",
+      "languages": ["Dart", "Kotlin"],
+      "frameworks": ["Flutter", "Provider", "Riverpod", "Jetpack Compose", "CameraX", "WorkManager", "DataStore"],
+      "data": ["SQLite"],
+      "infra": ["Google Play"],
+      "ai": [],
+      "platforms": ["Android"],
+      "techniques": ["overlay baked at photo pixel scale so the preview is what gets saved", "EXIF GPS writing", "capture pipeline that survives the app being killed", "image work on background isolates", "FFmpeg video", "Google Maps", "AdMob"]
+    },
+    {
+      "id": "ai-email-parser",
+      "name": "AI email-to-spreadsheet parser",
+      "ownership": "client", "role": "author", "status": "working", "visibility": "anonymised", "last_activity": "2026-03",
+      "summary": "Reads Gmail messages and attachments (PDF, images), extracts fields with an LLM by user-defined rules and syncs them to Google Sheets; later redesigned as a Workspace add-on.",
+      "languages": ["PHP", "TypeScript", "Kotlin", "JavaScript"],
+      "frameworks": ["Laravel", "laravel/ai", "Hono", "Drizzle", "Temporal", "Google Apps Script"],
+      "data": ["Turso", "PostgreSQL", "MinIO"],
+      "infra": ["Docker", "Vercel"],
+      "ai": ["LLM field extraction", "OpenRouter"],
+      "techniques": ["Google OAuth and Gmail API", "Google Sheets sync", "Workspace add-on design"]
+    },
+    {
+      "id": "ooh-planning-platform",
+      "name": "Out-of-home advertising planning platform",
+      "ownership": "client", "role": "author", "status": "prototype", "visibility": "anonymised", "last_activity": "2026-04",
+      "summary": "Planning platform for billboard advertising with traffic heatmaps, inventory, a campaign manager and an AI intelligence module.",
+      "languages": ["PHP", "JavaScript"],
+      "frameworks": [],
+      "data": [],
+      "infra": ["Docker"],
+      "ai": ["Gemini", "AI cost governance"],
+      "techniques": ["Google Maps Routes, Places and heatmaps", "geospatial analysis"]
+    },
+    {
+      "id": "business-networking-platform",
+      "name": "Business networking and referral platform",
+      "ownership": "client", "role": "author", "status": "working", "visibility": "anonymised", "last_activity": "2026-10",
+      "summary": "Chapters, meetings, referrals, payments and admin for a business networking community: REST API, web app and documentation site.",
+      "languages": ["PHP"],
+      "frameworks": ["Laravel 13", "Blade", "Tailwind CSS"],
+      "data": ["PostgreSQL"],
+      "infra": ["Docker", "Railway"],
+      "ai": [],
+      "techniques": ["Swagger contract tests", "SEO"]
+    },
+    {
+      "id": "tracking-link-manager",
+      "name": "Tracking-link and campaign manager",
+      "ownership": "client", "role": "author", "status": "working", "visibility": "anonymised", "last_activity": "2025-04",
+      "summary": "Tracking links, UTM and email campaigns with analytics and subscription billing.",
+      "languages": ["PHP", "TypeScript"],
+      "frameworks": ["Laravel", "Inertia", "React", "MUI", "ECharts", "Laravel Cashier"],
+      "data": ["PostgreSQL"],
+      "infra": [],
+      "ai": [],
+      "techniques": ["Stripe billing", "PHP-to-TypeScript type generation"]
+    },
+    {
+      "id": "booking-platform",
+      "name": "Membership booking platform services",
+      "ownership": "employer", "role": "contributor", "status": "live", "visibility": "anonymised", "last_activity": "2026-05",
+      "summary": "Work across a production membership and venue-booking platform: a Laravel booking service, a large Laminas dashboard, a NestJS venue service and a Node scheduler, plus a Go tool that records business rules across repositories.",
+      "languages": ["PHP", "TypeScript", "Go"],
+      "frameworks": ["Laravel", "Laminas", "NestJS", "Node.js"],
+      "data": ["MongoDB", "SQLite"],
+      "infra": ["Google Cloud", "Kubernetes", "Docker", "Codacy"],
+      "ai": ["context engineering"],
+      "techniques": ["company Laravel API template with app, queue and log processes", "swagger-php"]
+    },
+    {
+      "id": "copilot-agent-framework",
+      "name": "AI coding-agent framework",
+      "ownership": "employer", "role": "author", "status": "working", "visibility": "anonymised", "last_activity": "2026-03",
+      "summary": "A registry and installer of model-agnostic AI agents (PR review, security audit) with a Go CLI, a gh extension and a parallel sub-agent PR reviewer.",
+      "languages": ["Go", "Python", "Shell"],
+      "frameworks": ["gh CLI extensions"],
+      "data": [],
+      "infra": ["GitHub Actions"],
+      "ai": ["GitHub Copilot agents", "promptfoo evals", "parallel sub-agents"],
+      "techniques": []
+    },
+    {
+      "id": "jira-zoho-sync",
+      "name": "Issue-tracker sync engine, four ways",
+      "ownership": "employer", "role": "author", "status": "prototype", "visibility": "anonymised", "last_activity": "2026-04",
+      "summary": "The same Jira-to-Zoho Projects sync written in Bun/TypeScript, Go, Python and as a .NET MCP server, to compare them.",
+      "languages": ["TypeScript", "Go", "Python", "C#"],
+      "frameworks": ["Bun", "Zod", ".NET"],
+      "data": [],
+      "infra": [],
+      "ai": ["MCP"],
+      "techniques": ["one problem in four languages"]
+    },
+    {
+      "id": "client-platform-api",
+      "name": "Portfolio-sharing platform API",
+      "ownership": "client", "role": "contributor", "status": "live", "visibility": "anonymised", "last_activity": "2025-02",
+      "summary": "Production API and share/tracking services for a client platform with payments, messaging and image pipelines.",
+      "languages": ["PHP"],
+      "frameworks": ["Laravel", "Laravel Passport"],
+      "data": [],
+      "infra": ["AWS", "S3", "Cloudflare", "Bitbucket Pipelines", "Sentry"],
+      "ai": [],
+      "techniques": ["Stripe and PayPal payments", "Twilio"]
+    },
+    {
+      "id": "art-competition-apps",
+      "name": "Art competition app and dashboard",
+      "ownership": "client", "role": "author", "status": "prototype", "visibility": "anonymised", "last_activity": "2026-02",
+      "summary": "A Flutter port of a React Native app listing art competitions, with a Laravel admin and API; plus payment-to-certificate automation on the client's WordPress site.",
+      "languages": ["Dart", "PHP"],
+      "frameworks": ["Flutter", "Provider", "Laravel 12", "Inertia", "React", "WordPress"],
+      "data": [],
+      "infra": [],
+      "ai": [],
+      "platforms": ["Android"],
+      "techniques": ["Razorpay payment reconciliation and retries"]
+    },
+    {
+      "id": "enterprise-sap-portals",
+      "name": "Dealer, dispatch and inventory portals with SAP",
+      "ownership": "client", "role": "author", "status": "archived", "visibility": "anonymised", "last_activity": "2022-07",
+      "summary": "A snacks manufacturer's dealer portal, dispatch portal, live barcode portal, inventory system and an order portal talking to SAP.",
+      "languages": ["PHP", "Python", "JavaScript"],
+      "frameworks": ["Laravel", "Blade"],
+      "data": ["MySQL"],
+      "infra": [],
+      "ai": [],
+      "techniques": ["SAP OData integration", "barcode readers over TCP sockets"]
+    },
+    {
+      "id": "unicon",
+      "name": "unicon / sap-bridge",
+      "ownership": "personal", "role": "author", "status": "prototype", "visibility": "public", "last_activity": "2024-07",
+      "summary": "A universal connection layer between ERPs and e-commerce, including an SAP OData bridge.",
+      "languages": ["PHP"], "frameworks": ["Laravel"], "data": [], "infra": [], "ai": [],
+      "techniques": ["SAP OData"],
+      "links": ["https://github.com/laxit-patel/unicon"]
+    },
+    {
+      "id": "sigil",
+      "name": "Sigil",
+      "ownership": "personal", "role": "author", "status": "live", "visibility": "public", "last_activity": "2026-08",
+      "summary": "Turns an integer into one recognisable Cistercian-style glyph: one spec with cross-language golden vectors and two published implementations.",
+      "languages": ["PHP", "JavaScript"],
+      "frameworks": ["Web Components"],
+      "data": [],
+      "infra": ["GitHub Actions", "Packagist", "npm"],
+      "ai": [],
+      "techniques": ["spec-first with golden vectors", "SVG, Canvas, ASCII and DXF output", "zero dependencies", "llms.txt"],
+      "links": ["https://github.com/laxit-patel/sigil", "https://github.com/laxit-patel/php-sigil", "https://github.com/laxit-patel/js-sigil"]
+    },
+    {
+      "id": "promptest",
+      "name": "Promptest",
+      "ownership": "personal", "role": "author", "status": "prototype", "visibility": "private", "last_activity": "2026-07",
+      "summary": "\"Pest for prompts\": evaluates, gates and refines Laravel system prompts with PHP attributes, scorers and CI gates.",
+      "languages": ["PHP"],
+      "frameworks": ["Laravel"],
+      "data": [],
+      "infra": [],
+      "ai": ["LLM-as-judge (G-Eval)", "embedding scorers", "judge-versus-human calibration", "prompt linting", "replay cache"],
+      "techniques": ["PHP attributes", "CI gates"]
+    },
+    {
+      "id": "sightline",
+      "name": "Sightline",
+      "ownership": "personal", "role": "author", "status": "working", "visibility": "private", "last_activity": "2026-10",
+      "summary": "A headless out-of-home advertising engine: an ad brief in, ranked and explainable billboard picks and the best set under budget out.",
+      "languages": ["Kotlin", "Python", "Rust"],
+      "frameworks": ["OpenAPI"],
+      "data": [],
+      "infra": ["Docker"],
+      "ai": [],
+      "techniques": ["contract-first with byte-identical golden vectors", "property tests", "lazy-greedy budget selection", "geo grid index", "Rust vs Kotlin spike", "about 1.3 ms p50"]
+    },
+    {
+      "id": "tradebot",
+      "name": "Tradebot",
+      "ownership": "personal", "role": "author", "status": "prototype", "visibility": "private", "last_activity": "2026-10",
+      "summary": "Research on Indian index options (NIFTY, SENSEX): pricing, Greeks, an end-of-day loader, labelers and walk-forward models. Paper trading only.",
+      "languages": ["Python", "TypeScript"],
+      "frameworks": ["FastAPI", "pandas", "LightGBM", "Next.js"],
+      "data": ["Parquet"],
+      "infra": [],
+      "ai": ["machine learning (gradient boosting)"],
+      "techniques": ["leakage-safe walk-forward folds", "adversarial feasibility review", "reporting a negative result honestly"]
+    },
+    {
+      "id": "phuse",
+      "name": "Phuse",
+      "ownership": "personal", "role": "author", "status": "prototype", "visibility": "private", "last_activity": "2026-04",
+      "summary": "A Go CLI and terminal UI that captures a project's PHP runtime as TOML and rebuilds it, isolated, anywhere.",
+      "languages": ["Go"],
+      "frameworks": ["Cobra", "Bubble Tea"],
+      "data": ["MessagePack"],
+      "infra": [],
+      "ai": [],
+      "techniques": ["static PHP runtimes", "hashed binary cache", "atomic file management", "TUI health dashboard"]
+    },
+    {
+      "id": "tigerbeetle-php",
+      "name": "TigerBeetle for PHP",
+      "ownership": "personal", "role": "author", "status": "prototype", "visibility": "private", "last_activity": "2026-07",
+      "summary": "A TigerBeetle ledger client for PHP and Laravel with stock and wallet ledgers, a sidecar driver and a planned C extension.",
+      "languages": ["PHP", "C"],
+      "frameworks": ["Laravel"],
+      "data": ["TigerBeetle"],
+      "infra": ["Docker"],
+      "ai": [],
+      "techniques": ["exact 128-byte wire structs", "two-phase reserve and commit", "linked atomic transfer chains"]
+    },
+    {
+      "id": "ecom-platform",
+      "name": "Commerce kernel and order management R&D",
+      "ownership": "personal", "role": "author", "status": "prototype", "visibility": "private", "last_activity": "2026-10",
+      "summary": "A multi-repo commerce and inventory platform: a Kotlin kernel, an order management service on Temporal and gRPC, and a Laravel concept prototype with a Medusa storefront.",
+      "languages": ["Kotlin", "PHP", "TypeScript"],
+      "frameworks": ["Quarkus", "Spring", "Temporal", "gRPC", "Laravel 13", "Medusa"],
+      "data": ["PostgreSQL", "TigerBeetle"],
+      "infra": ["Docker"],
+      "ai": [],
+      "techniques": ["saga allocation with compensation", "inventory ledger under concurrency", "domain model written in seven languages"]
+    },
+    {
+      "id": "protomorph",
+      "name": "Protomorph",
+      "ownership": "personal", "role": "author", "status": "prototype", "visibility": "private", "last_activity": "2026-02",
+      "summary": "A prompt becomes a structured project vision, rendered as Excalidraw diagrams and pitch decks.",
+      "languages": ["PHP", "TypeScript"],
+      "frameworks": ["Laravel", "laravel/ai", "Inertia", "React", "Excalidraw"],
+      "data": [], "infra": [],
+      "ai": ["AI agent with structured output"],
+      "techniques": []
+    },
+    {
+      "id": "datingwala",
+      "name": "Datingwala",
+      "ownership": "personal", "role": "author", "status": "prototype", "visibility": "private", "last_activity": "2026-07",
+      "summary": "An India-first, woman-safe dating app MVP, with an earlier Flutter client and Laravel dashboard.",
+      "languages": ["Kotlin", "TypeScript", "Dart", "PHP"],
+      "frameworks": ["Jetpack Compose", "React Native", "Expo", "Flutter", "Riverpod", "Laravel", "Inertia", "React"],
+      "data": [],
+      "infra": ["Docker", "Caddy"],
+      "ai": [],
+      "platforms": ["Android", "Web"],
+      "techniques": ["swipe deck and chat", "Swagger-documented API"]
+    },
+    {
+      "id": "mythos",
+      "name": "Mythos",
+      "ownership": "personal", "role": "author", "status": "prototype", "visibility": "private", "last_activity": "2025-04",
+      "summary": "An esoteric programming language where programs are written as sagas, with a compiler and VM.",
+      "languages": ["Go"], "frameworks": [], "data": [], "infra": [], "ai": [],
+      "techniques": ["language design", "compiler", "virtual machine"]
+    },
+    {
+      "id": "voxel-sandbox",
+      "name": "Voxel sandbox",
+      "ownership": "personal", "role": "author", "status": "prototype", "visibility": "private", "last_activity": "2026-09",
+      "summary": "A voxel placement sandbox with chunks, hoppers and item flow, built in Go and ported to Odin.",
+      "languages": ["Go", "Odin"], "frameworks": ["raylib"], "data": [], "infra": [], "ai": [],
+      "techniques": ["game development", "language port"]
+    },
+    {
+      "id": "game-experiments",
+      "name": "Game and graphics experiments",
+      "ownership": "learning", "role": "author", "status": "skeleton", "visibility": "private", "last_activity": "2026-05",
+      "summary": "A C++ OpenGL instanced grid renderer and a Godot 4 space-colony strategy game design.",
+      "languages": ["C++", "GDScript"], "frameworks": ["OpenGL", "GLFW", "Godot 4"], "data": [], "infra": ["CMake", "vcpkg"], "ai": [],
+      "techniques": ["instanced rendering", "game design document"]
+    },
+    {
+      "id": "lip-sync-experiment",
+      "name": "Lip-sync video experiment",
+      "ownership": "personal", "role": "author", "status": "skeleton", "visibility": "private", "last_activity": "2025-04",
+      "summary": "A Next.js front end over a FastAPI wrapper around Wav2Lip.",
+      "languages": ["TypeScript", "Python"], "frameworks": ["Next.js", "FastAPI"], "data": [], "infra": [],
+      "ai": ["Wav2Lip"], "techniques": []
+    },
+    {
+      "id": "instagrab",
+      "name": "igrab",
+      "ownership": "personal", "role": "author", "status": "prototype", "visibility": "private", "last_activity": "2026-07",
+      "summary": "Downloads public Instagram reels and photos by URL through a rate-limit-aware job queue.",
+      "languages": ["Python"], "frameworks": ["uv"], "data": ["SQLite"], "infra": ["Docker Compose"], "ai": [],
+      "techniques": ["single-lock worker", "distinct failure codes"]
+    },
+    {
+      "id": "cairn",
+      "name": "Cairn",
+      "ownership": "personal", "role": "author", "status": "working", "visibility": "private", "last_activity": "2026-08",
+      "summary": "A Chrome new-tab extension showing curated link stacks.",
+      "languages": ["JavaScript"], "frameworks": ["Chrome Manifest V3"], "data": [], "infra": [], "ai": [], "techniques": []
+    },
+    {
+      "id": "attendance-extension",
+      "name": "Attendance hours browser extension",
+      "ownership": "personal", "role": "author", "status": "working", "visibility": "private", "last_activity": "2025-08",
+      "summary": "Finds attendance tables on a page and works out required and completed hours.",
+      "languages": ["JavaScript"], "frameworks": ["Vite"], "data": [], "infra": ["Vercel"], "ai": [], "techniques": ["browser extension"]
+    },
+    {
+      "id": "wedding-site",
+      "name": "Wedding invitation site",
+      "ownership": "personal", "role": "author", "status": "live", "visibility": "private", "last_activity": "2026-10",
+      "summary": "A mobile-first wedding invitation site driven by one validated JSON file.",
+      "languages": ["TypeScript"], "frameworks": ["Next.js 16", "Tailwind CSS 4", "Zod", "Vitest"], "data": [], "infra": ["Vercel"], "ai": [], "techniques": ["motion design"]
+    },
+    {
+      "id": "portfolio-sites",
+      "name": "Personal portfolio sites",
+      "ownership": "personal", "role": "author", "status": "live", "visibility": "public", "last_activity": "2026-05",
+      "summary": "Portfolio and resume sites, first on Next.js and now on Astro.",
+      "languages": ["TypeScript", "JavaScript"], "frameworks": ["Astro", "Next.js", "Jest"], "data": [], "infra": [], "ai": [], "techniques": [],
+      "links": ["https://github.com/laxit-patel/laxit.dev"]
+    },
+    {
+      "id": "go-learning",
+      "name": "Asteroid-mining API (Go practice)",
+      "ownership": "learning", "role": "author", "status": "prototype", "visibility": "private", "last_activity": "2026-09",
+      "summary": "A Go HTTP API over NASA asteroid data, plus a CI/CD course project.",
+      "languages": ["Go"], "frameworks": [], "data": ["SQLite"], "infra": ["Make", "GitHub Actions"], "ai": [], "techniques": []
+    },
+    {
+      "id": "ipl-dashboard",
+      "name": "IPL stats dashboard",
+      "ownership": "learning", "role": "author", "status": "working", "visibility": "private", "last_activity": "2025-01",
+      "summary": "A full-stack dashboard over IPL cricket data from 2008 to 2024.",
+      "languages": ["JavaScript"], "frameworks": ["React", "Vite", "Tailwind CSS", "Express"], "data": ["PostgreSQL"], "infra": [], "ai": [],
+      "techniques": ["normalised schema", "CSV ingest"]
+    },
+    {
+      "id": "laravel-saas-experiments",
+      "name": "Laravel product experiments",
+      "ownership": "personal", "role": "author", "status": "skeleton", "visibility": "private", "last_activity": "2026-05",
+      "summary": "Early-stage product starts on the Laravel + Inertia stack: multi-tenant SaaS, survey analytics, document management, competition management, a meal-ordering QR app, a desk-setup community and others.",
+      "languages": ["PHP", "TypeScript"], "frameworks": ["Laravel", "Inertia", "React", "Vue 3", "WorkOS"], "data": [], "infra": ["Docker"], "ai": [],
+      "techniques": ["multi-tenancy"]
+    },
+    {
+      "id": "small-open-source",
+      "name": "Small open-source tools",
+      "ownership": "personal", "role": "author", "status": "working", "visibility": "public", "last_activity": "2025-12",
+      "summary": "clover-to-lcov (PHPUnit Clover to LCOV), keychan (human-readable ids), queryclash and db-war (SQL performance duels), and my terminal setup.",
+      "languages": ["PHP", "Shell"], "frameworks": ["PHPUnit", "Oh My Zsh"], "data": ["MySQL"], "infra": [], "ai": [], "techniques": ["code coverage formats"],
+      "links": ["https://github.com/laxit-patel/clover-to-lcov", "https://github.com/laxit-patel/keychan", "https://github.com/laxit-patel/queryclash", "https://github.com/laxit-patel/db-war", "https://github.com/laxit-patel/zsh"]
+    },
+    {
+      "id": "web-commerce-sites",
+      "name": "Commerce and business web apps (2023-2024)",
+      "ownership": "client", "role": "author", "status": "archived", "visibility": "anonymised", "last_activity": "2024-05",
+      "summary": "Online grocery and supermarket portals, a Next.js commerce storefront, a link-sharing app, an Ionic parcel-photo app with a Laravel core, a live-score platform and agency sites.",
+      "languages": ["TypeScript", "JavaScript", "PHP", "Dart"],
+      "frameworks": ["Next.js", "React", "Ionic", "Laravel", "Flutter", "Svelte"], "data": ["MySQL"], "infra": ["AWS Amplify"], "ai": [], "techniques": []
+    },
+    {
+      "id": "early-web-work",
+      "name": "Early web and Python work (2018-2022)",
+      "ownership": "personal", "role": "author", "status": "archived", "visibility": "public", "last_activity": "2022-12",
+      "summary": "Hospital, library and MLM management systems, a local business directory and a music player in Python/Django, WordPress and core PHP sites, a CSS framework, Laravel starter kits and an Electron app.",
+      "languages": ["PHP", "Python", "JavaScript", "CSS"],
+      "frameworks": ["Laravel", "Django", "WordPress", "Bootstrap", "Material Design", "Electron"], "data": ["MySQL"], "infra": ["AWS S3"], "ai": [],
+      "techniques": ["static site hosting with CI/CD"],
+      "links": ["https://github.com/laxit-patel/HMS", "https://github.com/laxit-patel/LMS", "https://github.com/laxit-patel/DailyBazar", "https://github.com/laxit-patel/oscillate", "https://github.com/laxit-patel/starter-kit-metronic", "https://github.com/laxit-patel/material-boilerplate"]
+    }
+  ]
+}
