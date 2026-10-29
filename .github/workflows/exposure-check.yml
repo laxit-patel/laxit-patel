@@ -1,0 +1,23 @@
+# Fails when EXPOSURE.md no longer matches inventory.json, or the inventory breaks its own rules (missing fields, unknown values,
+# duplicate ids). Fix locally with: python3 tools/exposure.py
+name: Inventory check
+
+on:
+  push:
+    paths: ["inventory.json", "EXPOSURE.md", "tools/**", ".github/workflows/exposure-check.yml"]
+  pull_request:
+    paths: ["inventory.json", "EXPOSURE.md", "tools/**", ".github/workflows/exposure-check.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 tools/exposure.py --check
